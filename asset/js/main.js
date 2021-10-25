@@ -32,7 +32,7 @@ postUserEl(posts)
 
 function postUser(member) {
     return `
-    <div class="card" style="width: 37rem;">
+    <div class="card g-3" style="width: 37rem;">
         <div class="card-body">
             <img class="avatar" src="${member.avatar}" alt="">
           <h5 class="card-title"> ${member.id} </h5>
@@ -40,7 +40,7 @@ function postUser(member) {
           <p class="card-text">${member.contenuto}</p>
           <img class="imgPost" src="${member.image}" alt="">
           <a href="#" class="card-link card_link"> <i class="fas fa-thumbs-up"></i> Mi piace</a>
-          <a href="#" class="card-link card_link">Piace a <span style="font-weight: 700;">${member.likes}</span>  persone</a>
+          <p class="like">Piace a <span style="font-weight: 700;">${member.likes}</span>  persone</p>
         </div>
       </div> `  
 }
