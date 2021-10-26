@@ -1,6 +1,7 @@
 const posts = [
 {
-    id:'Francesco',
+    id: 01,
+    name:'Francesco',
     avatar: 'https://i.picsum.photos/id/315/300/300.jpg?hmac=YWqnPrHCKQAIUAZSbXNjekfq1TbcljqwqzTNfoBQVHE',
     data: '2021/10/2',
     contenuto: ' Lorem ipsum dolor sit amet consectetur adipisicing elit.',
@@ -8,7 +9,8 @@ const posts = [
     likes: 10
 },
 {
-    id: 'Sara',
+    id: 02,
+    name:'Sara',
     avatar:'https://i.picsum.photos/id/563/300/300.jpg?hmac=_yODwhC9wmOj8yM7resDVXCVzX1HrmDC5D5dakomZPE',
     data: '2021/4/10',
     contenuto: ' Lorem ipsum dolor sit amet consectetur adipisicing elit.',
@@ -16,7 +18,8 @@ const posts = [
     likes: 3
 },
 {
-    id: 'Manuel',
+    id: 03,
+    name:'Manuel',
     avatar: 'https://i.picsum.photos/id/26/300/300.jpg?hmac=UMOujtfr34V3cEr43DgbCJYhdXQl8hbrc-GxqQd_Fug',
     data: '2021/5/2',
     contenuto: ' Lorem ipsum dolor sit amet consectetur adipisicing elit.',
@@ -24,7 +27,7 @@ const posts = [
     likes: 100
 }
 ]
-const like = ['Francesco','Sara','Manuel']
+var likes = []
 
 postUserEl(posts)
 
@@ -37,17 +40,31 @@ function postUser(member) {
     <div class="card g-3" style="width: 37rem;">
         <div class="card-body">
             <img class="avatar" src="${member.avatar}" alt="">
-          <h5 class="card-title"> ${member.id} </h5>
+          <h5 class="card-title"> ${member.name} </h5>
           <h6 class="card-subtitle mb-2 text-muted">${tempoTrascorso}</h6>
           <p class="card-text">${member.contenuto}</p>
           <img class="imgPost" src="${member.image}" alt="">
-          <a href="#" class="card-link card_link"> <i class="fas fa-thumbs-up"></i> Mi piace</a>
-          <p class="like">Piace a <span style="font-weight: 700;">${member.likes}</span>  persone</p>
+          <a href="#" class="card-link card_link" onclick="likeClick(${member.id})" > <i class="fas fa-thumbs-up"></i> Mi piace</a>
+          <p  class="like" >Piace a <span style="font-weight: 700;" id="like${member.id}">${member.likes}</span>  persone</p>
         </div>
       </div> `  
 }
 
-
+function likeClick(idPost) {
+    let spanNumberLike = document.getElementById(`like${idPost}`)
+    let likeNow = parseInt(spanNumberLike.innerHTML)
+    if (likes.includes(idPost)){
+        likes.pop(idPost);
+        likeNow=likeNow-1
+        spanNumberLike.innerHTML=likeNow
+    }else {
+        likes.push(idPost)
+        likeNow=likeNow+1
+        spanNumberLike.innerHTML=likeNow
+    }
+    console.log(likes);
+    // document.getElementById("like").innerHTML = val;
+}
 
 function postUserEl(postsArray) {
     for (let index = 0; index < postsArray.length; index++) {
